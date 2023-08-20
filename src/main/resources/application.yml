@@ -1,0 +1,31 @@
+spring:
+  # datasource:
+  #   driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+  #   url: jdbc:log4jdbc:mysql://${spring.datasource.host}:3306/${spring.datasource.database}
+  cloud:
+    azure:
+      # storage:
+      #   blob:
+      #     account-name: ${spring.cloud.azure.storage.blob.account-name}
+      #     account-key: ${spring.cloud.azure.storage.blob.account-key}
+      #     endpoint: ${spring.cloud.azure.storage.blob.endpoint}
+      keyvault:
+        enabled: false
+        endpoint: ${spring.cloud.azure.keyvault.secret.endpoint}
+        profile:
+          tenant-id: ${spring.cloud.azure.keyvault.secret.profile.tenant-id}
+        credential:
+          client-id: ${spring.cloud.azure.keyvault.secret.credential.client-id}
+          client-secret: ${spring.cloud.azure.keyvault.secret.credential.client-secret}
+  servlet:
+    # ref) https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html
+    multipart:
+      file-size-threshold: 100MB # 파일 당 메모리에 가지고 있을 수 있는 크기
+      max-file-size: 100MB       # 파일의 최대 크기 (default: 1MB)
+      max-request-size: 100MB    # 요청의 최대 크기 (default: 10MB)
+  sendgrid:
+    api-key: ${spring.sendgrid.api-key}
+
+server:
+  tomcat:
+    max-swallow-size: 100MB     # multipart or x-www-urlencoded 경우 (default: 2MB)
